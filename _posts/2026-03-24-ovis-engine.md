@@ -5,8 +5,7 @@ date:   2026-03-24
 permalink: /ovis/
 ---
 
-[![Ovis Engine & Match Stranded Showcase](https://img.youtube.com/vi/0z34pRebRAY/maxresdefault.jpg)](https://www.youtube.com/watch?v=0z34pRebRAY)
-*Click the image above to watch the full technical breakdown and Unity engine comparison.*
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/0z34pRebRAY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## 📌 Project Overview
 **Match Stranded** is a complete Match-2 puzzle game developed entirely from scratch using my own custom C++ framework, the **Ovis Engine**. 
