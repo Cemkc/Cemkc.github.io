@@ -14,27 +14,13 @@ project_entries:
     url: /futuregames-projects/
     desc: Programming Lead & AI Programmer on two award-winning Unity games (1st and 2nd place), developed in rapid 1-month production cycles with 12-person cross-functional teams.
 
-  - title: 3D Scene Optimization with Octree and OpenGL
+  - title: 3D Scene Optimization with Octree
     url: /octree-optimization/
     desc: A custom C++ and OpenGL application demonstrating advanced spatial partitioning by implementing an Octree algorithm from scratch to solve O(n²) CPU bottlenecks.
 
-old_project_entries:
-  - title: Soopr
-    url: https://www.soopr.co
-    desc: Delight your readers - add beautiful share and like buttons easily to your websites 
-    highlight: NEW
-
-  - title: Cookie
-    url: https://github.com/abhinavs/cookie
-    desc: An open source landing website with supporting pages and integrated blog
-
-  - title: Moonwalk
-    url: https://github.com/abhinavs/moonwalk
-    desc: A fast and minimalist Jekyll blog theme with clean dark mode
-
-  - title: Humangous
-    url: https://www.humangous.co
-    desc: The better people know you, the better they collaborate
+  - title: Vampire Survivors 3D Clone (Unity ECS)
+    url: /vampire-survivors/
+    desc: A high-density 3D survival game architected entirely with Unity ECS and Data-Oriented Programming (DOP) to handle massive entity counts at high frame rates.
 
 footer_entries:
   - title: github
@@ -42,35 +28,3 @@ footer_entries:
 
   - title: linkedin
     url: https://www.linkedin.com/in/cem-ko%C3%A7/
-
-misc_entries:
-  - title: this is an example vertical list
-    url: false
-
-  - title: you can show or hide using a boolean flag in _config.yml
-    url: false
-
-  - title: and you can add data in _data/home.yml
-    url: false
-
-  - title: Blog posts
-    post_list: true
-    url: false
-
-  - title: moonwalk on the Internet
-    url: false
-    entries:
-      - title: on Github
-        url: https://github.com/abhinavs/moonwalk
-
-      - title: originally built for abhinav's homepage
-        url: https://www.abhinav.co
-
-      - title: this list is scalable and can be nested
-        url: false
-        entries:
-          - title: this is nested inside a nested list
-            url: false
-
-          - title: it is easy to use, see _data/home.yml to see how to configure it.
-            url: false
