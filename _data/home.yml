@@ -1,3 +1,16 @@
+navbar_entries:
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/cem-ko%C3%A7/
+
+  - title: GitHub
+    url: https://github.com/Cemkc
+
+  - title: YouTUbe
+    url: https://www.youtube.com/@cemkoc-351
+
+  - title: Artstation
+    url: https://www.artstation.com/gem351
+
 project_entries:
   - title: Ovis Game Engine & Match Stranded
     url: /ovis/
@@ -19,9 +32,3 @@ project_entries:
     url: /project-mavata/
     desc: A mobile 2.5D fighting game developed over 1.5 years inside the BUG Lab TEKMER incubator. Features custom Unity editor tools, AI Behavior Trees, and deterministic netcode architecture.
 
-footer_entries:
-  - title: github
-    url: https://github.com/Cemkc
-
-  - title: linkedin
-    url: https://www.linkedin.com/in/cem-ko%C3%A7/
