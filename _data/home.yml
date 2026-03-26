@@ -22,6 +22,10 @@ project_entries:
     url: /vampire-survivors/
     desc: A high-density 3D survival game architected entirely with Unity ECS and Data-Oriented Programming (DOP) to handle massive entity counts at high frame rates.
 
+  - title: Project Mavata (Venture)
+    url: /project-mavata/
+    desc: A mobile 2.5D fighting game developed over 1.5 years inside the BUG Lab TEKMER incubator. Features custom Unity editor tools, AI Behavior Trees, and deterministic netcode architecture.
+
 footer_entries:
   - title: github
     url: https://github.com/Cemkc
