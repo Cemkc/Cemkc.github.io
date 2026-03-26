@@ -6,9 +6,9 @@ permalink: /futuregames-projects/
 ---
 
 ## 📌 Overview: Rapid Agile Production
-During my curriculum at Futuregames, I participated in intensive 1-month game production cycles. Collaborating in large, 12-person cross-functional teams containing designers, artists, and producers, we engineered polished Unity titles from scratch under strict deadlines. 
+During my curriculum at Futuregames, I participated in intensive 3-weeks game production cycles. Collaborating in large, 12-person cross-functional teams containing programmers, designers, artists, and producers, we developed polished Unity titles from scratch under strict deadlines. 
 
-Both projects were pitched to and judged by industry veterans from prestige studios including **CD Projekt Red** and **11 Bit Studios**. Below are the two award-winning titles I helped engineer.
+Both projects were pitched to and judged by industry veterans from prestige studios including **CD Projekt Red** and **11 Bit Studios**. Below are the two award-winning titles I helped develop.
 
 ***
 
