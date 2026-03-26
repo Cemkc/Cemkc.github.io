@@ -14,6 +14,10 @@ project_entries:
     url: /futuregames-projects/
     desc: Programming Lead & AI Programmer on two award-winning Unity games (1st and 2nd place), developed in rapid 1-month production cycles with 12-person cross-functional teams.
 
+    - title: 3D Scene Optimization with Octree and OpenGL
+    url: /octree-optimization/
+    desc: A custom C++ and OpenGL application demonstrating advanced spatial partitioning by implementing an Octree algorithm from scratch to solve O(n²) CPU bottlenecks.
+
 old_project_entries:
   - title: Soopr
     url: https://www.soopr.co
