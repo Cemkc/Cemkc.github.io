@@ -16,13 +16,13 @@ Project Mavata is a 2.5D Fighting Game exclusively designed for mobile platforms
 
 <br>
 
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 30px;">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; margin-top: 30px;">
   <div style="flex: 1;">
     <h3 style="margin-top: 0;">Gesture based Input</h3>
     <p style="font-size: 0.9em; opacity: 0.9;">Touch gestures we use in Project Mavata are limited to basic gestures which are swipe, tap, hold and double variants of these. These gestures are not easier or consistent to perform but we think they are more immersive. We tried to find the balance while implementing this input method and create a great feeling input mechanism in general.</p>
   </div>
   
-  <div style="color: #48C9B0; font-size: 28px; font-weight: bold; font-family: sans-serif; text-shadow: 0 0 10px rgba(72,201,176,0.5);">
+  <div style="color: #48C9B0; font-size: 28px; font-weight: bold; font-family: sans-serif; padding-top: 45px;">
     VS
   </div>
   
@@ -38,17 +38,6 @@ Project Mavata is a 2.5D Fighting Game exclusively designed for mobile platforms
 </div>
 
 <br>
-
-### Gesture based Input
-Touch gestures we use in Project Mavata are limited to basic gestures which are swipe, tap, hold and double variants of these. These gestures are not easier or consistent to perform but we think they are more immersive. We tried to find the balance while implementing this input method and create a great feeling input mechanism in general.
-
-### VS
-
-### Virtual Button based Input
-Virtual buttons are the most commonly used input method on mobile platforms. They mimic the buttons found on physical controller devices and bring them to the touchscreen. This makes virtual buttons responsive, easy to perform and consistent.
-
-### Breaking the Formula
-Going back to the root of Fighting Games, the Arcade, we aim to capture the feeling of being the fighter itself. Instead of relying on button controls. Project Mavata makes full use of the mobile platform, favoring touch controls which offers a more immersive solution.
 
 ### Screen Alignment
 
