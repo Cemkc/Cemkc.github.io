@@ -9,9 +9,9 @@ navbar_entries:
     url: https://www.abhinav.co
 
 project_entries:
-  - title: Ovis Game Engine
+  - title: Ovis Game Engine & Match Stranded
     url: /ovis-game-engine-match-stranded/
-    desc: A custom 2D game engine built from scratch utilizing C++ and OpenGL, featuring batch rendering and custom raycasting.
+    desc: A match 2 game made with a custom 2D game engine built from scratch utilizing C++ and OpenGL, featuring batch rendering and custom raycasting.
     
   - title: Project 1
     url: overview-post
