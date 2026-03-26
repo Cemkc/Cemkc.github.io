@@ -10,11 +10,11 @@ project_entries:
     url: /ovis/
     desc: A match 2 game made with a custom 2D game engine built from scratch utilizing C++ and OpenGL, featuring batch rendering and custom raycasting.
 
-    - title: Futuregames Game Projects
+  - title: Futuregames Game Projects
     url: /futuregames-projects/
     desc: Programming Lead & AI Programmer on two award-winning Unity games (1st and 2nd place), developed in rapid 1-month production cycles with 12-person cross-functional teams.
 
-    - title: 3D Scene Optimization with Octree and OpenGL
+  - title: 3D Scene Optimization with Octree and OpenGL
     url: /octree-optimization/
     desc: A custom C++ and OpenGL application demonstrating advanced spatial partitioning by implementing an Octree algorithm from scratch to solve O(n²) CPU bottlenecks.
 
