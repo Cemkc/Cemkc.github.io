@@ -2,7 +2,7 @@ title: Cem Koç
 author: Cem Koç
 url: "https://Cemkc.github.io" # root address of the site
 description: > # description of the site (multiple lines allowed)
-  Software Developer specializing in C++, Unity Game Engine Architecture, and Data-Oriented Programming. 
+  Software Engineer and Game Developer specializing in low-level game engine architecture, C++, and Unity ECS.
 
 permalink: /:slug
 

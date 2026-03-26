@@ -16,13 +16,13 @@ Project Mavata is a 2.5D Fighting Game exclusively designed for mobile platforms
 
 <br>
 
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 30px;">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; margin-top: 30px;">
   <div style="flex: 1;">
     <h3 style="margin-top: 0;">Gesture based Input</h3>
     <p style="font-size: 0.9em; opacity: 0.9;">Touch gestures we use in Project Mavata are limited to basic gestures which are swipe, tap, hold and double variants of these. These gestures are not easier or consistent to perform but we think they are more immersive. We tried to find the balance while implementing this input method and create a great feeling input mechanism in general.</p>
   </div>
   
-  <div style="color: #48C9B0; font-size: 28px; font-weight: bold; font-family: sans-serif; text-shadow: 0 0 10px rgba(72,201,176,0.5);">
+  <div style="color: #48C9B0; font-size: 28px; font-weight: bold; font-family: sans-serif; padding-top: 45px;">
     VS
   </div>
   
@@ -39,23 +39,12 @@ Project Mavata is a 2.5D Fighting Game exclusively designed for mobile platforms
 
 <br>
 
-### Gesture based Input
-Touch gestures we use in Project Mavata are limited to basic gestures which are swipe, tap, hold and double variants of these. These gestures are not easier or consistent to perform but we think they are more immersive. We tried to find the balance while implementing this input method and create a great feeling input mechanism in general.
-
-### VS
-
-### Virtual Button based Input
-Virtual buttons are the most commonly used input method on mobile platforms. They mimic the buttons found on physical controller devices and bring them to the touchscreen. This makes virtual buttons responsive, easy to perform and consistent.
-
-### Breaking the Formula
-Going back to the root of Fighting Games, the Arcade, we aim to capture the feeling of being the fighter itself. Instead of relying on button controls. Project Mavata makes full use of the mobile platform, favoring touch controls which offers a more immersive solution.
-
 ### Screen Alignment
 
 **Double touch interaction:** All of the actions that are listed on each side can be performed concurrently resulting in a different action.
 *Examples: Double Hold = Block, Double Swipe Down = Grab*
 
-![Screen Alignment](/assets/images/favicon/Project_Mavata_Controls.png)
+![Screen Alignment](/assets/images/Project_Mavata_Controls.png)
 
 **Left Side:** Left side of the screen is dedicated for actions that are more related with movement, change of position of the fighter.
 *Examples: Drag Left = Walk Left, Swipe Right = Dash Right*
@@ -68,7 +57,7 @@ Going back to the root of Fighting Games, the Arcade, we aim to capture the feel
 ### AI Solution
 In a fighting game that also implements a single player experience AI is one of the most crucial development point. For the AI behaviour we needed an expandable, adaptable and readable model. Behavior Tree is a commonly used AI model when it comes to designing AI and it checks the criteria we defined for our model. So I implemented this technique to our AI related code.
 
-![Fighter BT](/assets/images/favicon/Project_Mavata_BT.png)
+![Fighter BT](/assets/images/Project_Mavata_BT.png)
 *Image 1: Behaviour Tree UI in Unity Editor*
 
 AI Behaviour Tree Editor allows us to create more complex and adjustable fighter behaviour using nodes and branches. Referring to Image 1; Red and Yellow nodes are logic nodes and they contain a fixed logic like logic gates. On the other hand Green boxes stand for behaviour nodes which are editable code containers. They contain the behaviour code of a fighter. Thus, Logic nodes, define the flow of decision making mechanism that is inside the behaviour nodes. 
@@ -76,7 +65,7 @@ AI Behaviour Tree Editor allows us to create more complex and adjustable fighter
 ### Creating Fighters
 When working on a Fighting game we needed a fast and reusable way to create and edit fighters. We developed a code infrastructure that allows fighters' moves to be interchanged along with, any move to be easily removed from a fighter's move-set, and new moves to be seamlessly added. This system is supported by a UI. Additionally, we built a framework where the moves dictate the animation. Animation duration is adjusted by manipulating the animation speed to achieve the required timing, rather than the animation determining the move's duration. Consequently, we can create and modify fighters without writing extra code, using only the UI we developed. 
 
-![Fighter Blueprint UI](/assets/images/favicon/Project_Mavata_Combo_Nodes.png)
+![Fighter Blueprint UI](/assets/images/Project_Mavata_Combo_Nodes.png)
 *Image 2: Fighter Blueprint UI in Unity Editor (A section from a Fighter's move-set)*
 
 ### Netcode Solution

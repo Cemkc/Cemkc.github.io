@@ -1,9 +1,15 @@
 navbar_entries:
-  - title: about
-    url: about
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/cem-ko%C3%A7/
 
-  - title: blog
-    url: blog
+  - title: GitHub
+    url: https://github.com/Cemkc
+
+  - title: YouTube
+    url: https://www.youtube.com/@cemkoc-351
+
+  - title: Artstation
+    url: https://www.artstation.com/gem351
 
 project_entries:
   - title: Ovis Game Engine & Match Stranded
@@ -22,9 +28,7 @@ project_entries:
     url: /vampire-survivors/
     desc: A high-density 3D survival game architected entirely with Unity ECS and Data-Oriented Programming (DOP) to handle massive entity counts at high frame rates.
 
-footer_entries:
-  - title: github
-    url: https://github.com/Cemkc
+  - title: Project Mavata (Venture)
+    url: /project-mavata/
+    desc: A mobile 2.5D fighting game developed over 1.5 years inside the BUG Lab TEKMER incubator. Features custom Unity editor tools, AI Behavior Trees, and deterministic netcode architecture.
 
-  - title: linkedin
-    url: https://www.linkedin.com/in/cem-ko%C3%A7/
