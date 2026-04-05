@@ -14,7 +14,7 @@ layout: home
     Software Engineer and Game Developer specializing in Gameplay and AI programming, low-level game engine programming and data-oriented programming.
   </p>
 
-  <a href="/assets/Cem_Koc_CV_PHOTO.pdf" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #48C9B0; color: #0d1117; text-decoration: none; font-weight: bold; border-radius: 6px; font-size: 1.05em; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+  <a href="/assets/CEM_KOC_CV_PHOTO.pdf" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #48C9B0; color: #0d1117; text-decoration: none; font-weight: bold; border-radius: 6px; font-size: 1.05em; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
     📄 View My CV
   </a>
 </div>
