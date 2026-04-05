@@ -3,14 +3,15 @@ layout: home
 ---
 
 <style>
-  /* Hides the theme's default left-aligned title. 
-     By NOT including ".header" here, your project cards remain totally safe! */
-  .header-title { display: none !important; }
+  /* Targets ONLY the .header class that lives inside the site's top <header> navigation tag. 
+     Your project cards live further down the page, so they remain 100% safe. 
+  */
+  header .header { display: none !important; }
 </style>
 
 <div style="text-align: center; margin-bottom: 60px; margin-top: 40px;">
 
-  <h1 style="font-size: 3.5em; margin-bottom: 15px; letter-spacing: -1px; color: #58a6ff;">Cem Koç</h1>
+  <h1 style="font-size: 3.5em; margin-bottom: 15px; letter-spacing: -1px; color: #58a6ff; display: block !important;">Cem Koç</h1>
 
   <p style="font-size: 1.15em; opacity: 0.85; max-width: 650px; margin: 0 auto 25px auto; line-height: 1.6;">
     Software Engineer and Game Developer specializing in Gameplay and AI programming, low-level game engine programming and data-oriented programming.
@@ -20,3 +21,18 @@ layout: home
     📄 View My CV
   </a>
 </div>
+
+<script>
+  // The ultimate failsafe. This script scans the page purely for the duplicate name 
+  // and deletes it, ignoring your project cards entirely.
+  document.addEventListener("DOMContentLoaded", function() {
+    var allHeaders = document.querySelectorAll('.header');
+    for (var i = 0; i < allHeaders.length; i++) {
+      // If it says exactly "Cem Koç" and isn't your custom H1 tag, hide it.
+      if (allHeaders[i].textContent.trim() === "Cem Koç" && allHeaders[i].tagName !== "H1") {
+        allHeaders[i].style.display = "none";
+        break; // Stop after deleting the first duplicate
+      }
+    }
+  });
+</script>
