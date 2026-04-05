@@ -1,8 +1,6 @@
 title: Cem Koç
 author: Cem Koç
 url: "https://Cemkc.github.io" # root address of the site
-description: > # description of the site (multiple lines allowed)
-  Software Engineer and Game Developer specializing in Gameplay and AI programming, low-level game engine programming and data oriented programming.
 
 permalink: /:slug
 
