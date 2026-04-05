@@ -3,11 +3,13 @@ layout: home
 ---
 
 <style>
-  /* Safely hides ONLY the top-level H1 title, leaving the project card headers completely alone! */
-  h1.header-title { display: none !important; }
+  /* Hides the theme's default left-aligned title. 
+     By NOT including ".header" here, your project cards remain totally safe! */
+  .header-title { display: none !important; }
 </style>
 
 <div style="text-align: center; margin-bottom: 60px; margin-top: 40px;">
+
   <h1 style="font-size: 3.5em; margin-bottom: 15px; letter-spacing: -1px; color: #58a6ff;">Cem Koç</h1>
 
   <p style="font-size: 1.15em; opacity: 0.85; max-width: 650px; margin: 0 auto 25px auto; line-height: 1.6;">
