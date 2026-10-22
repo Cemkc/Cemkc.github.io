@@ -28,7 +28,6 @@ window.UI = (function () {
 
   // Muted, looping, chrome-less YouTube player that behaves like a GIF.
   // The iframe is only created once the card scrolls near the viewport.
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lazyVideos = "IntersectionObserver" in window
     ? new IntersectionObserver(entries => {
         for (const entry of entries) {
@@ -38,6 +37,47 @@ window.UI = (function () {
         }
       }, { rootMargin: "200px" })
     : null;
+  // YouTube rejects embeds from file:// pages (error 153), so keep the poster there.
+  const canEmbed = location.protocol === "http:" || location.protocol === "https:";
+  const liveBoxes = [];
+
+  /* ---------- Autoplay switch ---------- */
+  // Visitors can turn the GIF-like videos off; the choice is remembered. Off by default with reduced motion.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let autoplay = !reducedMotion;
+  try {
+    const saved = localStorage.getItem("autoplay");
+    if (saved) autoplay = saved === "on";
+  } catch (e) { /* storage blocked: keep the default */ }
+
+  function startVideo(box) {
+    if (!canEmbed || !autoplay) return;
+    lazyVideos ? lazyVideos.observe(box) : box.loadVideo();
+  }
+
+  function stopVideo(box) {
+    if (lazyVideos) lazyVideos.unobserve(box);
+    box.classList.remove("playing");
+    box.querySelector("iframe")?.remove();
+  }
+
+  function setAutoplay(on) {
+    autoplay = on;
+    try { localStorage.setItem("autoplay", on ? "on" : "off"); } catch (e) { /* not saved */ }
+    document.querySelectorAll(".autoplay-switch").forEach(s => s.setAttribute("aria-checked", String(on)));
+    liveBoxes.forEach(on ? startVideo : stopVideo);
+  }
+
+  function autoplaySwitch() {
+    const button = el("button", { class: "autoplay-switch", type: "button", role: "switch", "aria-checked": String(autoplay), title: "Play project videos automatically" }, [
+      el("span", { class: "autoplay-label", text: "Autoplay" }),
+      el("span", { class: "track", "aria-hidden": "true" }, el("span", { class: "knob" }))
+    ]);
+    button.addEventListener("click", () => setAutoplay(!autoplay));
+    return button;
+  }
+
+  document.querySelectorAll("[data-autoplay-switch]").forEach(slot => slot.append(autoplaySwitch()));
 
   function liveMedia(project) {
     const id = project.youtube;
@@ -52,6 +92,7 @@ window.UI = (function () {
       el("a", { class: "badge sound", href: `https://www.youtube.com/watch?v=${id}`, target: "_blank", rel: "noopener", text: "Watch with sound ↗" })
     ]);
     box.loadVideo = () => {
+      if (!autoplay || box.querySelector("iframe")) return;
       const params = new URLSearchParams({
         autoplay: 1, mute: 1, loop: 1, playlist: id, controls: 0,
         playsinline: 1, rel: 0, modestbranding: 1, iv_load_policy: 3, disablekb: 1
@@ -64,28 +105,26 @@ window.UI = (function () {
         referrerpolicy: "strict-origin-when-cross-origin",
         "aria-hidden": "true"
       });
-      frame.addEventListener("load", () => setTimeout(() => box.classList.add("playing"), 600));
+      frame.addEventListener("load", () => setTimeout(() => {
+        if (frame.isConnected) box.classList.add("playing");
+      }, 600));
       box.insertBefore(frame, box.lastChild);
     };
-    // YouTube rejects embeds from file:// pages (error 153), so keep the poster there.
-    const canEmbed = location.protocol === "http:" || location.protocol === "https:";
-    if (canEmbed && !reducedMotion) lazyVideos ? lazyVideos.observe(box) : box.loadVideo();
+    liveBoxes.push(box);
+    startVideo(box);
     return box;
   }
 
   function media(project) {
     if (project.youtube && project.autoplay) return liveMedia(project);
     if (project.youtube) {
-      const url = `https://www.youtube.com/watch?v=${project.youtube}`;
       const img = el("img", {
         src: `https://img.youtube.com/vi/${project.youtube}/hqdefault.jpg`,
         alt: `Video thumbnail for ${project.title}`,
         loading: "lazy"
       });
-      const link = el("a", { class: "media", href: url, target: "_blank", rel: "noopener", "aria-label": `Watch ${project.title} on YouTube` },
-        [img, el("span", { class: "play", html: playIcon }), el("span", { class: "badge", text: "Video" })]);
       img.addEventListener("error", () => img.replaceWith(placeholder(project)));
-      return link;
+      return el("div", { class: "media" }, [img, el("span", { class: "play", html: playIcon }), el("span", { class: "badge", text: "Video" })]);
     }
     if (project.image) {
       const img = el("img", { src: project.image, alt: project.imageAlt || project.title, loading: "lazy" });
@@ -101,7 +140,6 @@ window.UI = (function () {
     const watchUrl = `https://www.youtube.com/watch?v=${id}`;
     const img = el("img", { src: `https://img.youtube.com/vi/${id}/maxresdefault.jpg`, alt: `Video thumbnail for ${project.title}` });
     img.addEventListener("error", () => { img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }, { once: true });
-    const canEmbed = location.protocol === "http:" || location.protocol === "https:";
     const button = el(canEmbed ? "button" : "a", canEmbed
       ? { class: "media player", type: "button", "aria-label": `Play ${project.title} video` }
       : { class: "media player", href: watchUrl, target: "_blank", rel: "noopener", "aria-label": `Watch ${project.title} on YouTube` },

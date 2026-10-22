@@ -149,7 +149,9 @@ body::before {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
-.tabs-inner { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.tabs-bar { display: flex; align-items: center; gap: 12px; }
+.tabs-inner { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; flex: 1 1 auto; min-width: 0; }
+.tabs-tools { flex: none; }
 .tab {
   appearance: none; background: none; border: 0; cursor: pointer;
   color: var(--muted);
@@ -313,12 +315,38 @@ body::before {
 }
 .media .badge.sound:hover { border-color: var(--area); color: var(--area); }
 
-/* Card links to project pages */
+/* The whole card opens the project page: the title link is stretched over the card,
+   and the external links and the sound badge sit above it. */
+.card { position: relative; }
 .card h3 .title-link { text-decoration: none; }
-.card h3 .title-link:hover { color: var(--area); }
-.links a.details { background: var(--area); border-color: var(--area); color: var(--on-area); font-weight: 500; }
-.links a.details::after { content: none; }
-.links a.details:hover { color: var(--on-area); filter: brightness(1.08); }
+.card h3 .title-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.card h3 .title-link:focus-visible { outline: none; }
+.card:has(.title-link:focus-visible) { outline: 2px solid var(--area); outline-offset: 3px; }
+.card:hover h3 .title-link { color: var(--area); }
+.card .links a { position: relative; z-index: 2; }
+/* Container queries make .media.live its own stacking context, so lift it and let clicks fall through to the card. */
+.card .media.live { z-index: 2; pointer-events: none; }
+.card .media.live .badge.sound { pointer-events: auto; }
+
+/* Autoplay switch, in the sticky tab bar and the project page top bar */
+.autoplay-switch {
+  appearance: none; background: none; border: 0; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 2px; color: var(--muted);
+  font-family: var(--font-mono); font-size: 12px; white-space: nowrap;
+}
+.autoplay-switch:hover { color: var(--fg); }
+.autoplay-switch .track {
+  position: relative; width: 30px; height: 18px; border-radius: 99px;
+  background: var(--surface-2); border: 1px solid var(--line);
+  transition: background-color .15s, border-color .15s;
+}
+.autoplay-switch .knob {
+  position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--muted); transition: transform .15s, background-color .15s;
+}
+.autoplay-switch[aria-checked="true"] .track { background: var(--area); border-color: var(--area); }
+.autoplay-switch[aria-checked="true"] .knob { transform: translateX(12px); background: var(--on-area); }
 
 /* ---------- Project page ---------- */
 .topbar {
@@ -331,6 +359,8 @@ body::before {
 .back { font-family: var(--font-mono); font-size: var(--step--1); text-decoration: none; color: var(--muted); }
 .back:hover { color: var(--fg); }
 .topbar-area { font-family: var(--font-mono); font-size: 12px; color: var(--area); }
+.topbar-tools { display: flex; align-items: center; gap: 16px; }
+@media (max-width: 520px) { .topbar-area { display: none; } }
 
 .project { display: flex; flex-direction: column; gap: clamp(32px, 5vw, 56px); padding-block: clamp(32px, 6vw, 64px); }
 .project-head { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }

@@ -28,6 +28,7 @@
     const meta = [project.team, project.role].filter(Boolean).join(" · ");
     const body = el("div", { class: "body" }, [
       el("div", { class: "card-head" }, [
+        // The title link stretches over the whole card (see .title-link::after), so the card opens the project page.
         el("h3", {}, project.id ? el("a", { href: projectUrl(project), class: "title-link" }, project.title) : project.title),
         project.year ? el("span", { class: "year", text: project.year }) : null
       ]),
@@ -39,7 +40,6 @@
         : null,
       el("ul", { class: "tags", "aria-label": "Technologies" }, (project.tech || []).map(t => el("li", { text: t }))),
       el("div", { class: "links" }, [
-        project.id ? el("a", { class: "details", href: projectUrl(project), text: "My contribution →" }) : null,
         ...(project.links && project.links.length
           ? project.links.map(l => el("a", { href: l.url, target: "_blank", rel: "noopener", text: l.label }))
           : [el("span", { class: "private", text: "Closed source" })])
