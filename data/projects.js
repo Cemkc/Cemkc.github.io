@@ -16,14 +16,16 @@
 window.PORTFOLIO = {
   profile: {
     name: "Cem Koç",
-    role: "Game & Graphics Programmer",
+    role: "Game & Graphics Programmer · Warsaw, Poland",
     intro:
-      "I build gameplay systems, the editor tools that make them easy to design for, and the rendering code underneath. I work mostly in Unity/C# and C++/OpenGL.",
+      "I build gameplay systems, the editor tools that make them easy to design for, and the rendering code underneath. Lead Programmer at Bosphorus Games and studying Game Programming at Futuregames Warsaw.",
     links: [
       { label: "GitHub", url: "https://github.com/Cemkc" },
-      { label: "LinkedIn", url: "https://www.linkedin.com/in/cem-ko%C3%A7/" }
+      { label: "LinkedIn", url: "https://www.linkedin.com/in/cem-ko%C3%A7/" },
+      { label: "YouTube", url: "https://www.youtube.com/@cemkoc-351" },
+      { label: "ArtStation", url: "https://www.artstation.com/gem351" }
     ],
-    email: null, // e.g. "name@example.com"; shown in the header when set
+    email: "cemkoc132@gmail.com", // shown in the header when set
     cv: null     // e.g. "assets/Cem-Koc-CV.pdf"; shown as a button when set
   },
 
@@ -34,40 +36,69 @@ window.PORTFOLIO = {
       tone: "amber",
       pitch:
         "Gameplay programming and tools in Unity and C#. I like systems that stay readable as a game grows: hierarchical state machines for game flow and characters, custom editor windows that let designers build content without touching code, and data set up in ScriptableObjects.",
-      skills: ["Unity", "C#", "Hierarchical state machines", "Custom editor tools", "ScriptableObject workflows", "Netcode", "A* pathfinding", "Object pooling"],
+      skills: ["Unity", "C#", "Hierarchical state machines", "Custom editor tools", "ScriptableObject workflows", "Behavior trees", "HLSL / Shader Graph", "Netcode", "A* pathfinding", "Object pooling"],
       projects: [
         {
           title: "Gemmy Gems",
-          year: "2025–2026",
-          team: "Bosphorus Games (team)",
-          role: "Gameplay & tools programmer",
+          year: "2025–now",
+          team: "Bosphorus Games",
+          role: "Lead Programmer",
           featured: true,
           summary:
-            "A gem-crafting game where you dig up stones, work them in a workshop and sell them to customers. I wrote a large share of the gameplay code.",
+            "A commercial PC game about digging up stones, working them in a workshop and selling them to customers. I lead the programming team and set the code standards that let several programmers add features without stepping on each other.",
           highlights: [
             "Workshop tool suite (cutting, molding, scale, scanner, UV light), each tool driven by its own state machine",
             "Hierarchical state machine for game states, plus a pushdown automaton for stacked UI and flow",
             "Editor tooling for the team: gravel debugger, land selection tools, tutorial debugger",
-            "Save/load and the grid systems behind gravel collection"
+            "Technical art: custom shaders in Shader Graph and HLSL"
           ],
-          tech: ["Unity", "C#", "HSM", "Editor tools"],
+          tech: ["Unity", "C#", "HSM", "HLSL", "Shader Graph", "Team lead"],
           metric: { value: "130+", label: "commits of ~350" },
-          links: []
+          links: [{ label: "Bosphorus Games", url: "https://www.linkedin.com/company/bosphorus-games/" }]
+        },
+        {
+          title: "Nana: Into the Banana",
+          year: "2025",
+          team: "Futuregames (team)",
+          role: "Programming lead",
+          summary:
+            "A one-month production with designers, artists and producers. Judged by developers from studios including CD Projekt Red and 11 bit studios.",
+          highlights: [
+            "Led programming on the team",
+            "Combat system programmer: designed and built the combat system and core mechanics"
+          ],
+          tech: ["Unity", "C#", "Combat systems"],
+          metric: { value: "1st", label: "place of 8 games" },
+          links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/nanaintothebanana" }]
+        },
+        {
+          title: "Polar Protocol",
+          year: "2025",
+          team: "Futuregames (team)",
+          role: "AI programmer",
+          summary:
+            "A one-month team production at Futuregames, judged by industry developers.",
+          highlights: [
+            "Enemy AI built on Unity's behavior tree package, extended with custom nodes for complex agent logic"
+          ],
+          tech: ["Unity", "C#", "Behavior trees", "Game AI"],
+          metric: { value: "2nd", label: "place of 8 games" },
+          links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/thepolarprotocol" }]
         },
         {
           title: "Project Mavata",
           year: "2023–2024",
-          team: "GoKo Studios (team)",
-          role: "Gameplay programmer",
+          team: "GoKo Studios",
+          role: "Co-founder & programmer",
           summary:
-            "A mobile fighting game played with touch gestures, with online multiplayer and AI opponents.",
+            "A 2.5D fighting game from the studio I co-founded. I led a 5-person team and pitched the studio into a one-year incubation at BUG Lab TEKMER.",
           highlights: [
             "Fighter logic built on a hierarchical FSM with a combo system and hitboxes",
             "Touch gesture recognition ($1 / $Q recognizers) plus an editor for authoring strokes",
             "Editor tooling for fighters and an animation preview window",
-            "Netcode work on the server protocol"
+            "Netcode work on the server protocol, plus custom 3D animations made in Blender"
           ],
-          tech: ["Unity", "C#", "HFSM", "Netcode", "Mobile"],
+          tech: ["Unity", "C#", "HFSM", "Netcode", "Blender"],
           metric: { value: "100", label: "commits of 190" },
           links: [{ label: "Source", url: "https://github.com/GoKo-Studios/ProjectMavata" }]
         },
@@ -124,7 +155,7 @@ window.PORTFOLIO = {
       projects: [
         {
           title: "Match Stranded on Ovis Engine",
-          year: "2024–2026",
+          year: "2024–2025",
           team: "Solo",
           featured: true,
           summary:
@@ -145,7 +176,7 @@ window.PORTFOLIO = {
         },
         {
           title: "Octree Spatial Partitioning",
-          year: "2024–2026",
+          year: "2024",
           team: "Solo",
           summary:
             "A C++/OpenGL benchmark that compares brute-force distance checks against an octree in a dense 3D scene, switchable at runtime.",
@@ -163,7 +194,7 @@ window.PORTFOLIO = {
         },
         {
           title: "Vampire Survivors 3D (ECS)",
-          year: "2025–2026",
+          year: "2025",
           team: "Solo",
           summary:
             "A 3D horde-survival game. The course asked for standard C#; I built it on Unity ECS/DOTS instead to learn data-oriented design.",
