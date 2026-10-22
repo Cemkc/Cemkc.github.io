@@ -437,34 +437,131 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           }
         },
         {
-          id: "magara-jams",
-          title: "Magara Jam 4 & 5",
+          id: "cehennet",
+          title: "Cehennet",
           year: "2022",
-          team: "GoKo Studios (jam team)",
-          summary: "Two game jam entries made with the GoKo Studios team in a few days each.",
-          highlights: ["Gameplay programming under jam time limits", "Most active committer on both projects"],
-          tech: ["Unity", "C#", "Game jam"],
+          team: "Mağara Jam #5 (7-person team)",
+          role: "Player programmer",
+          summary:
+            "A top-down action game made in three days for Mağara Jam #5. You play an angel fighting \"evil\" demons with a flying blade you steer with the mouse, then pull every enemy it touched back to you.",
+          highlights: [
+            "Player state machine: walk, run, aim, dash and a ground smash from the air",
+            "A mouse-steered flying weapon with four states, which tags the enemies it hits",
+            "Mana that drains while the blade is out and refills from collected souls",
+            "Camera zoom and screen shake, and the audio manager"
+          ],
+          tech: ["Unity", "C#", "Cinemachine", "Game jam"],
+          metric: { value: "58", label: "commits, most on the team" },
+          image: "https://img.itch.zone/aW1nLzEwMDY2OTE0LnBuZw==/original/Wj0A%2FL.png",
+          imageAlt: "Cehennet cover art",
           links: [
-            { label: "Jam 4", url: "https://github.com/GoKo-Studios/MagaraJam4" },
-            { label: "Jam 5", url: "https://github.com/GoKo-Studios/MagaraJam5" }
+            { label: "Jam entry", url: "https://itch.io/jam/magara-jam-5/rate/1708064" },
+            { label: "Source", url: "https://github.com/GoKo-Studios/MagaraJam5" }
           ],
           page: {
             intro:
-              "I entered Magara Jam twice with the GoKo Studios team and made the most commits on both entries.",
+              "Cehennet was our entry for Mağara Jam #5: you take control of an angel and show the \"evil\" demons what's what. We made it in three days (15–18 September 2022) as a team of seven. I wrote the player: the character, its flying weapon, its skills, and the camera and audio around them. I made 58 commits, the most on the team.",
             facts: [
-              { label: "Duration", value: "A few days each" },
-              { label: "Year", value: "2022" }
+              { label: "Role", value: "Player programmer" },
+              { label: "Duration", value: "3 days (Sep 2022)" },
+              { label: "Team", value: "7 people" },
+              { label: "My commits", value: "58, most on the team" }
             ],
             sections: [
               {
-                title: "Magara Jam 4 (February 2022)",
-                text: "I wrote the enemy side: mob attacks, health and damage, and a stun mechanic. I also set up character animations and fixed player bugs."
+                title: "Player state machine",
+                text:
+                  "The player runs on a state machine with idle, walking, running, aiming, dashing and ground smash states. Each state has an entry step for its sounds and events. Movement follows the camera, and the player faces the mouse while the weapon is held."
               },
               {
-                title: "Magara Jam 5 (September 2022)",
-                text: "I wrote the player character: movement, dash, ground smash, skills with cooldowns and the arrow attack. I also added the camera manager and the audio manager."
+                title: "The flying weapon",
+                text:
+                  "The main weapon is a blade that flies out and follows the mouse. It has four states: out and steered, called back, aiming at the player's side, and charged, where it shoots forward and returns on its own after a moment. Its speed depends on how sharply it has to turn (looked up on an AnimationCurve) and on its distance to the target, so it slows into tight turns and races over long gaps.",
+                code: {
+                  file: "Assets/Scripts/CemScripts/theArrowMovement.cs (excerpt)",
+                  lang: "csharp",
+                  source: `private void moveArrow(Vector3 targetToMove, float stopRange){
+    float distance = Vector3.Distance(transform.position, targetToMove);
+
+    float clampedDistance = Mathf.Clamp(distance, stopRange, distanceCap);
+    float mappedDistance = MapRange(stopRange, distanceCap, 0.0f, 30.0f, clampedDistance);
+    rb.velocity = transform.forward * speed * TurnSpeedCurve(angleBetweenTarget) * mappedDistance;
+}
+
+private float TurnSpeedCurve(float angle) {
+    float res = MapRange(0, 180, 0, 1, angle);
+    return turnCurve.Evaluate(res);
+}`
+                }
+              },
+              {
+                title: "Skills",
+                bullets: [
+                  "Pull: every enemy the blade touched is tagged. On the pull input, tagged enemies are stunned and dragged to the player along the NavMesh.",
+                  "Dash: a short burst that knocks back and damages enemies, with a separate cooldown on the damage.",
+                  "Ground smash: from more than 3 m up, the player drops and hits everything nearby with knockback and a Cinemachine screen shake.",
+                  "Mana: drains while the blade is out and refills when the player collects souls."
+                ]
+              },
+              {
+                title: "Camera, audio and menus",
+                text:
+                  "A camera manager smoothly zooms out while the blade is out and shakes the screen on impacts. I also wrote the audio manager, the input event layer, and the start, pause and settings menus."
               }
-            ]
+            ],
+            note: "Enemies, waves and souls, most of the UI, the scenes and the art were made by teammates."
+          }
+        },
+        {
+          id: "iyi-uykular",
+          title: "İyi Uykular",
+          year: "2022",
+          team: "Mağara Jam #4 (team)",
+          role: "Gameplay programmer",
+          summary:
+            "A short 3D story game from Mağara Jam #4: a girl can't sleep after a nightmare, so her brother tells her a story, and you play through it.",
+          highlights: [
+            "Player controller with walk, run and dash states, aimed with the mouse",
+            "Teleport, stun and area attack skills with cooldowns, unlocked as the story goes on",
+            "A dragon boss with melee and fireball attacks on a NavMesh state machine"
+          ],
+          tech: ["Unity", "C#", "Input System", "NavMesh", "Game jam"],
+          image: "https://img.itch.zone/aW1nLzgyMTk5NjUucG5n/original/It9XRB.png",
+          imageAlt: "İyi Uykular cover art",
+          links: [
+            { label: "itch.io", url: "https://sphimex.itch.io/somnium" },
+            { label: "Source", url: "https://github.com/GoKo-Studios/MagaraJam4" }
+          ],
+          page: {
+            intro:
+              "İyi Uykular (\"Good night\") was our entry for Mağara Jam #4 in February 2022. A little girl wakes from a nightmare, and her older brother tells her a story to calm her down. You turn the pages of the book and play the story. I wrote the player and the dragon boss.",
+            facts: [
+              { label: "Role", value: "Gameplay programmer" },
+              { label: "Duration", value: "Jam weekend (Feb 2022)" },
+              { label: "My code", value: "Player, skills, dragon boss" }
+            ],
+            sections: [
+              {
+                title: "Player",
+                text:
+                  "The player has idle, walking, running, dashing and dying states. It moves relative to the orbit camera and turns to face the mouse cursor, found with a raycast into the scene. Input goes through Unity's Input System. The sword only deals damage between two animation events, so a hit counts only during the swing."
+              },
+              {
+                title: "Skills",
+                bullets: [
+                  "Teleport: raycasts forward for an enemy and puts the player just behind it.",
+                  "Stun: freezes the targeted enemy for a set time.",
+                  "Area attack: damages every enemy in range after a short wind-up.",
+                  "Each skill has its own cooldown and VFX, and the story unlocks them one by one."
+                ]
+              },
+              {
+                title: "Dragon boss",
+                text:
+                  "The dragon is a NavMesh agent with idle, chase, melee, ranged and return-to-origin states. Up close it attacks with a hitbox switched on by animation events. Further away it shoots fireballs at the player, and if the player runs far enough it walks back to where it started."
+              }
+            ],
+            note: "The regular enemies and the golem were written by a teammate. I added the stun and damage hooks they use."
           }
         }
       ]
