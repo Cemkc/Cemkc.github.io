@@ -216,10 +216,10 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           summary:
             "A two-player co-op potion shop with asymmetric roles: one player takes the orders, the other brews, and they have to talk to get them right. One of three programmers on a Futuregames team production.",
           highlights: [
-            "The game's network structure for two-player LAN co-op (one player hosts, the other joins)",
+            "The game's network structure for two-player LAN co-op (one player hosts, the other joins), built on Unreal Engine 5's replication",
             "Interactable item mechanics"
           ],
-          tech: ["Networking", "Co-op multiplayer"],
+          tech: ["Unreal Engine 5", "Replication", "RPCs", "Co-op multiplayer"],
           youtube: "4WlgjsTaRYg",
           autoplay: true,
           poster: "https://img.itch.zone/aW1nLzI4MDE4NDk3LnBuZw==/original/BfImCR.png",
@@ -227,7 +227,7 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/overbrewed" }],
           page: {
             intro:
-              "Overbrewed was Game Project 3 at Futuregames, made in seven weeks by a cross-site student team. I was one of three programmers. I wrote the network structure that lets two players share the shop over LAN, and the mechanics for the items players pick up and interact with.",
+              "Overbrewed was Game Project 3 at Futuregames, made in seven weeks by a cross-site student team. I was one of three programmers. I wrote the network structure that lets two players share the shop over LAN, using Unreal Engine 5's native networking: replicated objects and replicated functions (RPCs). I also wrote the mechanics for the items players pick up and interact with.",
             facts: [
               { label: "Role", value: "Network programmer" },
               { label: "Duration", value: "7 weeks" },
