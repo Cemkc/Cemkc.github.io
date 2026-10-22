@@ -31,7 +31,7 @@ window.PORTFOLIO = {
     name: "Cem Koç",
     role: "Game & Graphics Programmer · Warsaw, Poland",
     intro:
-      "I build gameplay systems, the editor tools that make them easy to design for, and the rendering code underneath. Lead Programmer at Bosphorus Games and studying Game Programming at Futuregames Warsaw.",
+      "I build gameplay systems, the editor tools that make them easy to design for, and the rendering code underneath. Lead Programmer at Bosphorus Games, and doing a master's in Computer Science at PJATK in Warsaw, specializing in Immersive Technologies and AI.",
     links: [
       { label: "GitHub", url: "https://github.com/Cemkc" },
       { label: "LinkedIn", url: "https://www.linkedin.com/in/cem-ko%C3%A7/" },
