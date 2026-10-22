@@ -443,10 +443,12 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           ],
           tech: ["Unity", "C#", "Cinemachine", "Game jam"],
           metric: { value: "58", label: "commits, most on the team" },
-          image: "https://img.itch.zone/aW1nLzEwMDY2OTE0LnBuZw==/original/Wj0A%2FL.png",
+          youtube: "t6xsAW5v9E4",
+          autoplay: true,
+          poster: "https://img.itch.zone/aW1nLzEwMDY2OTE0LnBuZw==/original/Wj0A%2FL.png",
           imageAlt: "Cehennet cover art",
           links: [
-            { label: "Jam entry", url: "https://itch.io/jam/magara-jam-5/rate/1708064" },
+            { label: "itch.io", url: "https://mecha351.itch.io/cehennet" },
             { label: "Source", url: "https://github.com/GoKo-Studios/MagaraJam5" }
           ],
           page: {
