@@ -391,52 +391,6 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           }
         },
         {
-          id: "match-stranded-unity",
-          title: "Match Stranded (Unity)",
-          year: "2024",
-          team: "Solo",
-          summary: "A Match-2 puzzle game built in one week as a case study, with a custom level editor at its core.",
-          highlights: [
-            "Custom Unity editor window for designing levels on a visual grid",
-            "Switchable object generation: dynamic spawning or object pooling",
-            "Tile animations defined as ScriptableObjects with AnimationCurves"
-          ],
-          tech: ["Unity", "C#", "Editor window", "Object pooling"],
-          image: "assets/img/matchstranded-level-editor.png",
-          imageAlt: "Custom Unity level editor window showing an 8 by 8 grid of tiles",
-          links: [{ label: "Source", url: "https://github.com/Cemkc/MatchStranded-Unity" }],
-          page: {
-            intro:
-              "I built this Match-2 game in one week (11–17 November 2024) as a case study. I wrote all of it: grid, tiles, special objects, level goals, UI, audio and a level editor. I later rebuilt the same game in C++ on my own engine.",
-            facts: [
-              { label: "Role", value: "Solo" },
-              { label: "Duration", value: "1 week" },
-              { label: "Engine", value: "Unity" }
-            ],
-            sections: [
-              {
-                title: "Level editor window",
-                text:
-                  "Easy level design matters most for a game like this in the long run, so I built a custom editor window. It edits a Grid Blueprint ScriptableObject on a visual grid, so a level can be laid out tile by tile.",
-                image: "assets/img/matchstranded-level-editor.png",
-                imageAlt: "Level editor window with an 8 by 8 grid of tiles labeled by type",
-                caption: "The level editor window editing an 8×8 Grid Blueprint."
-              },
-              {
-                title: "Tiles and objects",
-                bullets: [
-                  "Connected-tile detection, tile drop and refill.",
-                  "Special objects: rockets that can trigger each other, ducks, balloons and other hitable tiles.",
-                  "Two interchangeable generators: dynamic spawning, or an object pool that pre-creates objects at level start.",
-                  "Tile movement defined as ScriptableObjects with AnimationCurves, reused for falling and flying to the goal."
-                ]
-              }
-            ],
-            lessons:
-              "Tile objects inherit from a TileObject base class that does not cover every behavior, so using them needs type casts. In the Tile class I went the other way and put more into the base class, which leaves some subclasses with empty methods. With more time I would extend the level editor to configure falling objects, multi-select tiles and show tile images."
-          }
-        },
-        {
           id: "cehennet",
           title: "Cehennet",
           year: "2022",
