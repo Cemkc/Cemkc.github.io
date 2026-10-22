@@ -548,6 +548,8 @@ private float TurnSpeedCurve(float angle) {
           tech: ["C++", "OpenGL", "GLSL", "GLM", "GLFW", "GLAD"],
           metric: { value: "300 → 700+", label: "FPS after batching" },
           youtube: "0z34pRebRAY",
+          clip: "assets/video/match-stranded-ovis.mp4",
+          poster: "assets/video/match-stranded-ovis.jpg",
           links: [
             { label: "Watch", url: "https://www.youtube.com/watch?v=0z34pRebRAY" },
             { label: "Game source", url: "https://github.com/Cemkc/MatchStranded" }
@@ -621,6 +623,8 @@ if (localHitPoint.x >= -halfSize.x && localHitPoint.x <= halfSize.x &&
           ],
           tech: ["C++", "OpenGL", "GLM", "Dear ImGui"],
           youtube: "ZJ1vbPq08L4",
+          clip: "assets/video/octree.mp4",
+          poster: "assets/video/octree.jpg",
           links: [
             { label: "Watch", url: "https://www.youtube.com/watch?v=ZJ1vbPq08L4" },
             { label: "Source", url: "https://github.com/Cemkc/Octree_OpenGL" }
@@ -692,6 +696,8 @@ if (localHitPoint.x >= -halfSize.x && localHitPoint.x <= halfSize.x &&
           ],
           tech: ["Unity DOTS", "C#", "Burst", "Job System"],
           youtube: "fmzjpi9xANs",
+          clip: "assets/video/vampire-survivors-ecs.mp4",
+          poster: "assets/video/vampire-survivors-ecs.jpg",
           links: [
             { label: "Watch", url: "https://www.youtube.com/watch?v=fmzjpi9xANs" },
             { label: "Source", url: "https://github.com/Cemkc/VampireSurvivors_3D_Clone_ECS" }
