@@ -12,6 +12,8 @@
 //   youtube      optional YouTube video id; the card shows its thumbnail and links to the video
 //   autoplay     true plays the YouTube video muted and looping, like a GIF
 //   poster       optional image shown before an autoplaying video loads
+//   clip         optional short muted video file (e.g. "assets/video/octree.mp4") looped on the card instead;
+//                the project page still shows the full YouTube video
 //   image        optional path to a screenshot in assets/img (used when there is no video)
 //   links        list of { label, url }
 //   featured     true makes the card span the full row

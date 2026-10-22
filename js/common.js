@@ -61,11 +61,35 @@ window.UI = (function () {
     box.querySelector("iframe")?.remove();
   }
 
+  // Highlight clips are plain video files: they play only while on screen and while autoplay is on.
+  const clipBoxes = [];
+  const visibleClips = "IntersectionObserver" in window
+    ? new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          entry.target.visible = entry.isIntersecting;
+          syncClip(entry.target);
+        }
+      }, { rootMargin: "100px" })
+    : null;
+
+  function syncClip(box) {
+    const video = box.querySelector("video");
+    if (!video) return; // the file failed to load; the poster stays
+    if (autoplay && box.visible) {
+      if (!video.getAttribute("src")) video.src = box.dataset.src;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+    if (!autoplay) box.classList.remove("playing");
+  }
+
   function setAutoplay(on) {
     autoplay = on;
     try { localStorage.setItem("autoplay", on ? "on" : "off"); } catch (e) { /* not saved */ }
     document.querySelectorAll(".autoplay-switch").forEach(s => s.setAttribute("aria-checked", String(on)));
     liveBoxes.forEach(on ? startVideo : stopVideo);
+    clipBoxes.forEach(syncClip);
   }
 
   function autoplaySwitch() {
@@ -115,7 +139,28 @@ window.UI = (function () {
     return box;
   }
 
+  // Looping highlight clip from a local video file, e.g. assets/video/octree.mp4.
+  function clipMedia(project) {
+    const poster = project.poster || (project.youtube ? `https://img.youtube.com/vi/${project.youtube}/hqdefault.jpg` : project.image);
+    const box = el("div", { class: "media live clip", "data-src": project.clip }, [
+      poster ? el("img", { src: poster, alt: project.imageAlt || `Highlights from ${project.title}`, loading: "lazy" }) : placeholder(project),
+      el("video", { muted: "", loop: "", playsinline: "", preload: "none", "aria-hidden": "true", tabindex: "-1" }),
+      project.youtube
+        ? el("a", { class: "badge sound", href: `https://www.youtube.com/watch?v=${project.youtube}`, target: "_blank", rel: "noopener", text: "Full video ↗" })
+        : null
+    ]);
+    const video = box.querySelector("video");
+    video.muted = true; // the attribute alone doesn't satisfy autoplay rules in every browser
+    video.addEventListener("playing", () => box.classList.add("playing"));
+    video.addEventListener("error", () => { video.remove(); box.classList.remove("playing"); });
+    box.visible = !visibleClips;
+    clipBoxes.push(box);
+    visibleClips ? visibleClips.observe(box) : syncClip(box);
+    return box;
+  }
+
   function media(project) {
+    if (project.clip) return clipMedia(project);
     if (project.youtube && project.autoplay) return liveMedia(project);
     if (project.youtube) {
       const img = el("img", {
