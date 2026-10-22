@@ -561,7 +561,7 @@ private float TurnSpeedCurve(float angle) {
                   "The dragon is a NavMesh agent with idle, chase, melee, ranged and return-to-origin states. Up close it attacks with a hitbox switched on by animation events. Further away it shoots fireballs at the player, and if the player runs far enough it walks back to where it started."
               }
             ],
-            note: "The regular enemies and the golem were written by a teammate. I added the stun and damage hooks they use."
+            note: "The regular enemies, the golem and their stun handling were written by a teammate. I added the TakeDamage method my skills call on them."
           }
         }
       ]
