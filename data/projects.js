@@ -116,17 +116,18 @@ window.PORTFOLIO = {
         {
           id: "nana",
           title: "Nana: Into the Banana",
-          year: "2025",
+          year: "2026",
           featured: true,
           team: "Futuregames (team)",
-          role: "Lead Programmer",
+          role: "Lead Programmer · Weapons",
           summary:
             "A fast, chaotic, skill-based action game in bright yellow. Made in one month by a team of designers, artists, programmers and producers, and judged by developers from studios including CD Projekt Red and 11 bit studios.",
           highlights: [
-            "Led the three-person programming team",
-            "Combat system programmer: designed and built the combat system and core mechanics"
+            "Modular combat system: weapons are plug-in modules that the skill tree upgrades",
+            "Four weapons: the Bananarang boomerang, a tornado, bombs and a damaging trail",
+            "Weapon combos: the boomerang spawns a tornado, the tornado pulls in bombs, and bombs set the trail on fire"
           ],
-          tech: ["Unity", "C#", "Combat systems"],
+          tech: ["Unity", "C#", "Combat systems", "Physics queries"],
           metric: { value: "1st", label: "place of 8 games" },
           youtube: "t95-fin-uik",
           autoplay: true,
@@ -135,25 +136,69 @@ window.PORTFOLIO = {
           links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/nanaintothebanana" }],
           page: {
             intro:
-              "Futuregames projects run for one month with a full team of designers, artists, programmers and producers. On Nana: Into the Banana I was Lead Programmer, working with two gameplay programmers, and I wrote the combat system. The game took 1st place out of 8.",
+              "Futuregames projects run for about a month with a full team of designers, artists, programmers and producers. On Nana I was credited as Lead Programmer, and in code I owned the player's weapons: a modular combat system and four weapons whose skill-tree upgrades combine into combos. The game took 1st place out of 8.",
             facts: [
-              { label: "Role", value: "Lead Programmer, combat" },
-              { label: "Duration", value: "1 month" },
-              { label: "Programmers", value: "3" },
+              { label: "Role", value: "Lead Programmer, weapons" },
+              { label: "Duration", value: "1 month (Jan–Feb 2026)" },
+              { label: "My code", value: "Combat system and all 4 weapons" },
               { label: "Result", value: "1st of 8" }
             ],
             sections: [
               {
-                title: "Leading programming",
+                title: "Modular combat system",
                 text:
-                  "I led the three programmers on the team and set up the code structure for the project's core mechanics so they could scale as the game grew during the month."
+                  "The player has one CombatController that runs a list of weapon modules through their lifecycle. Each weapon derives from an abstract CombatModule that listens to the skill tree and overrides one method to switch on its own upgrades. A new weapon is a drop-in component, and designers can hang upgrades off the skill tree without touching the controller."
               },
               {
-                title: "Combat system",
+                title: "Bananarang",
                 text:
-                  "As combat system programmer, I designed and built the combat system and the core mechanics around it."
+                  "The boomerang auto-fires at the closest enemy inside a forward cone. It flies a quadratic Bézier curve whose control point is chosen so the curve passes through the target at the halfway point, and it ends at the player's live position, so it homes back to a moving player. A sine term adds the arc. Upgrades add a spiral orbit mode, a second boomerang offset by half a turn, and a tornado spawned mid-flight.",
+                code: {
+                  file: "Assets/Scripts/Weapons/Boomerang/Boomerang.cs (condensed)",
+                  lang: "csharp",
+                  source: `private void MoveStandard(float t)
+{
+    Vector3 newPos = CalculateBezierPoint(t, m_StartPos, m_TargetPos, m_OriginatedFrom.position);
+    transform.position = newPos;
+
+    if (IsTornado && !m_TornadoHasSpawned && t >= 0.5f)
+        SpawnTornado();
+}
+
+private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vector3 end)
+{
+    // control point chosen so the curve passes through 'target' at t = 0.5
+    Vector3 controlPoint = 2f * target - 0.5f * (start + end);
+    float u = 1 - t;
+    Vector3 p = u * u * start;
+    p += 2 * u * t * controlPoint;
+    p += t * t * end;
+
+    p.y += Mathf.Sin(t * Mathf.PI) * arcHeight;
+    return p;
+}`
+                }
+              },
+              {
+                title: "Tornado",
+                text:
+                  "The tornado snaps to the ground and pulls nearby ground and flying enemies toward its center each frame. While an enemy is caught, its own movement is switched off, and it is restored when the tornado ends. For this I added external-force hooks to the enemy AI base classes a teammate wrote. An upgrade lets the tornado suck in bombs too."
+              },
+              {
+                title: "Bombs and the trail",
+                bullets: [
+                  "Bombs drop when the player double-jumps, run a fuse, then deal area damage. The scatter upgrade throws a ring of mini-bombs at half damage.",
+                  "The trail drops a segment every few meters. Segments slow enemies while they stand in them and deal damage over time, with a per-enemy cooldown.",
+                  "Upgrades make the trail poisonous or flammable. A bomb exploding near a flammable trail sets every active segment ablaze for a while."
+                ]
+              },
+              {
+                title: "Combos",
+                text:
+                  "The weapons were built to feed into each other: the boomerang spawns a tornado, the tornado pulls bombs into the crowd, and the bombs ignite the trail. Each link is an upgrade, so players discover the chain through the skill tree."
               }
             ],
+            note: "Enemy AI, spawning, player movement abilities and audio were written by teammates.",
             gallery: [
               { src: "https://img.itch.zone/aW1hZ2UvNDI4NDUyOS8yNTY1NjA0NC5wbmc=/original/y3Q0ZY.png", alt: "Nana: Into the Banana gameplay" },
               { src: "https://img.itch.zone/aW1hZ2UvNDI4NDUyOS8yNTY1NjAxNi5wbmc=/original/SoBJUU.png", alt: "Nana: Into the Banana gameplay" }
@@ -165,13 +210,15 @@ window.PORTFOLIO = {
           title: "Polar Protocol",
           year: "2025",
           team: "Futuregames (team)",
-          role: "AI programmer",
+          role: "Enemy AI programmer",
           summary:
             "A short, fast top-down arcade shooter: a robotic snowman fights Heat Inc. to save the polar ice caps. One of two programmers on a one-month team production.",
           highlights: [
-            "Enemy AI built on Unity's behavior tree package, extended for complex agent logic"
+            "Enemy AI on Unity Behavior graphs with custom action nodes",
+            "Four enemy types, including a dasher that searches the NavMesh for a clear dash line and a meteor caster",
+            "Spawn system with cosine-wave timing, a difficulty curve and weighted spawn points"
           ],
-          tech: ["Unity", "C#", "Behavior trees", "Game AI"],
+          tech: ["Unity", "C#", "Unity Behavior", "NavMesh", "DOTween", "ScriptableObjects"],
           metric: { value: "2nd", label: "place of 8 games" },
           youtube: "GdHAlfl6nn0",
           autoplay: true,
@@ -180,20 +227,76 @@ window.PORTFOLIO = {
           links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/thepolarprotocol" }],
           page: {
             intro:
-              "A one-month Futuregames production where I was one of two programmers. I owned the enemy AI. The game took 2nd place out of 8.",
+              "A one-month Futuregames production. I was one of the two credited programmers and owned everything about the enemies: their AI, the enemy types, spawning and their data. I wrote the most first-party C# on the team, about level with the other programmer. The game took 2nd place out of 8.",
             facts: [
-              { label: "Role", value: "AI programmer" },
-              { label: "Duration", value: "1 month" },
+              { label: "Role", value: "Enemy AI programmer" },
+              { label: "Duration", value: "1 month (Oct–Nov 2025)" },
               { label: "Programmers", value: "2" },
               { label: "Result", value: "2nd of 8" }
             ],
             sections: [
               {
-                title: "Enemy AI",
+                title: "Behavior graphs",
                 text:
-                  "I built the enemy AI on Unity's behavior tree package and extended it to support more complex agent logic."
+                  "I set up Unity's Behavior package and built the enemy graphs (a shared mob base, close-range, ranged and a dash attack subgraph) with custom action nodes: move to target, check attack range, attack, shoot projectile, dash cooldown, find a dash position and dash through the target. Later I refactored the attacks into a dynamic subgraph so each enemy type plugs in its own. The patrol node is adapted from Unity's built-in one to use each enemy's own speeds."
+              },
+              {
+                title: "Dashing enemy",
+                text:
+                  "The dasher needs a straight, clear line through the player. It raycasts along the NavMesh from its position through the player plus an overshoot. If the line is blocked, it rotates the start point around the player in 15° steps until it finds a clear one, then walks there, winds up and dashes with DOTween, leaving a line of explosions along its path.",
+                code: {
+                  file: "Assets/_Project/Scripts/AI/Behaviour/Actions/ArrangePositionForDashAction.cs",
+                  lang: "csharp",
+                  source: `private bool GetValidDashPath(Vector3 currentPos, Vector3 targetPosition,
+    out Vector3 startPosition, out Vector3 endPosition, int sample = 0)
+{
+    const int sampleCount = 24;
+    if (sample >= sampleCount)
+    {
+        startPosition = Vector3.zero;
+        endPosition = Vector3.zero;
+        return false;
+    }
+
+    Vector3 dir = (targetPosition - currentPos).normalized;
+    Vector3 endPos = targetPosition + dir * DashOverShoot;
+
+    if (!NavMesh.Raycast(currentPos, endPos, out NavMeshHit hit, NavMesh.AllAreas))
+    {
+        startPosition = currentPos;
+        endPosition = new Vector3(endPos.x, startPosition.y, endPos.z);
+        return true;
+    }
+
+    float angleStep = 360f / sampleCount;
+    Vector3 offset = currentPos - targetPosition;
+    offset = Quaternion.AngleAxis(angleStep, Vector3.up) * offset;
+    Vector3 newPos = targetPosition + offset;
+
+    return GetValidDashPath(newPos, targetPosition, out startPosition, out endPosition, sample + 1);
+}`
+                }
+              },
+              {
+                title: "Caster enemy",
+                text:
+                  "The caster calls down meteors on a timer. The first lands on the player and the rest on random points, each checked to be reachable by the player with a complete NavMesh path, so a meteor never lands somewhere the player can't go. Meteors show a ground marker before they hit. Killing a caster gives bonus score."
+              },
+              {
+                title: "Spawn system",
+                bullets: [
+                  "Waves are timed by a cosine wave crossing a threshold, and an AnimationCurve raises the frequency as the run goes on. An editor gizmo plots the wave so designers can see the timing.",
+                  "Dynamic spawn points pick a weighted random enemy type. The weights stay summed to 100% in the inspector, with lockable entries. Fixed spawn points follow scripted timings.",
+                  "The manager tracks live counts per enemy type through each enemy's death event and connects to the level manager."
+                ]
+              },
+              {
+                title: "Enemy data",
+                text:
+                  "Each enemy's type, aggro distance, attack range, health, fire rate and speeds per movement type live in a MobSpecs ScriptableObject. An abstract Mob base class has four subclasses (close, ranged, dash and caster) that override how they shoot and react to snowball hits. I also wrote the shared shooting and health components and hooked enemies into the HUD and score."
               }
             ],
+            note: "The snowball, the core player mechanic, was written by teammates. The character controller is based on Unity's Starter Assets.",
             gallery: [
               { src: "https://img.itch.zone/aW1hZ2UvNDA3NDc2OS8yNDMwNTkwOC5qcGc=/original/b5FVvr.jpg", alt: "The Polar Protocol gameplay" },
               { src: "https://img.itch.zone/aW1hZ2UvNDA3NDc2OS8yNDMwNTkzNy5qcGc=/original/kQmG3L.jpg", alt: "The Polar Protocol gameplay" }
