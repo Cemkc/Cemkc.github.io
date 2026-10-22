@@ -36,7 +36,7 @@ window.PORTFOLIO = {
       tone: "amber",
       pitch:
         "Gameplay programming and tools in Unity and C#. I like systems that stay readable as a game grows: hierarchical state machines for game flow and characters, custom editor windows that let designers build content without touching code, and data set up in ScriptableObjects.",
-      skills: ["Unity", "C#", "Hierarchical state machines", "Custom editor tools", "ScriptableObject workflows", "Behavior trees", "HLSL / Shader Graph", "Netcode", "A* pathfinding", "Object pooling"],
+      skills: ["Unity", "C#", "Hierarchical state machines", "Custom editor tools", "ScriptableObject workflows", "Behavior trees", "HLSL / Shader Graph", "Netcode", "Object pooling"],
       projects: [
         {
           title: "Gemmy Gems",
@@ -59,6 +59,7 @@ window.PORTFOLIO = {
         {
           title: "Nana: Into the Banana",
           year: "2025",
+          featured: true,
           team: "Futuregames (team)",
           role: "Programming lead",
           summary:
@@ -101,19 +102,6 @@ window.PORTFOLIO = {
           tech: ["Unity", "C#", "HFSM", "Netcode", "Blender"],
           metric: { value: "100", label: "commits of 190" },
           links: [{ label: "Source", url: "https://github.com/GoKo-Studios/ProjectMavata" }]
-        },
-        {
-          title: "Civ Light",
-          year: "2025",
-          team: "Solo",
-          summary: "A small turn-based strategy game on a hex map, inspired by Civilization.",
-          highlights: [
-            "Hex grid with procedurally generated tile meshes",
-            "A* pathfinding across hex tiles for units",
-            "Fog of war, towns and buildings"
-          ],
-          tech: ["Unity", "C#", "A*", "Procedural mesh"],
-          links: [{ label: "Source", url: "https://github.com/Cemkc/CivLight" }]
         },
         {
           title: "Match Stranded (Unity)",
