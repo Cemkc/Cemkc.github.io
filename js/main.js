@@ -47,7 +47,55 @@
     return el("div", { class: "placeholder", "aria-hidden": "true" }, el("span", { text: initials(project.title) }));
   }
 
+  // Muted, looping, chrome-less YouTube player that behaves like a GIF.
+  // The iframe is only created once the card scrolls near the viewport.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const lazyVideos = "IntersectionObserver" in window
+    ? new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          lazyVideos.unobserve(entry.target);
+          entry.target.loadVideo();
+        }
+      }, { rootMargin: "200px" })
+    : null;
+
+  function liveMedia(project) {
+    const id = project.youtube;
+    const poster = el("img", {
+      src: project.poster || `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+      alt: project.imageAlt || `Gameplay from ${project.title}`,
+      loading: "lazy"
+    });
+    poster.addEventListener("error", () => poster.replaceWith(placeholder(project)));
+    const box = el("div", { class: "media live" }, [
+      poster,
+      el("a", { class: "badge sound", href: `https://www.youtube.com/watch?v=${id}`, target: "_blank", rel: "noopener", text: "Watch with sound ↗" })
+    ]);
+    box.loadVideo = () => {
+      const params = new URLSearchParams({
+        autoplay: 1, mute: 1, loop: 1, playlist: id, controls: 0,
+        playsinline: 1, rel: 0, modestbranding: 1, iv_load_policy: 3, disablekb: 1
+      });
+      const frame = el("iframe", {
+        src: `https://www.youtube-nocookie.com/embed/${id}?${params}`,
+        title: `${project.title} gameplay video`,
+        allow: "autoplay; encrypted-media; picture-in-picture",
+        tabindex: "-1",
+        referrerpolicy: "strict-origin-when-cross-origin",
+        "aria-hidden": "true"
+      });
+      frame.addEventListener("load", () => setTimeout(() => box.classList.add("playing"), 600));
+      box.insertBefore(frame, box.lastChild);
+    };
+    // YouTube rejects embeds from file:// pages (error 153), so keep the poster there.
+    const canEmbed = location.protocol === "http:" || location.protocol === "https:";
+    if (canEmbed && !reducedMotion) lazyVideos ? lazyVideos.observe(box) : box.loadVideo();
+    return box;
+  }
+
   function media(project) {
+    if (project.youtube && project.autoplay) return liveMedia(project);
     if (project.youtube) {
       const url = `https://www.youtube.com/watch?v=${project.youtube}`;
       const img = el("img", {

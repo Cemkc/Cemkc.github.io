@@ -295,3 +295,20 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* Autoplaying video cards: poster image first, then a muted looping YouTube player scaled to cover the box */
+.media.live { container-type: size; }
+.media.live img { position: absolute; inset: 0; }
+.media.live iframe {
+  position: absolute; left: 50%; top: 50%;
+  width: max(100%, 177.78cqh); height: max(100%, 56.25cqw);
+  transform: translate(-50%, -50%) scale(1.02);
+  border: 0; pointer-events: none;
+  opacity: 0; transition: opacity .6s ease;
+}
+.media.live.playing iframe { opacity: 1; }
+.media .badge.sound {
+  left: auto; right: 10px; top: auto; bottom: 10px; z-index: 2;
+  text-decoration: none;
+}
+.media .badge.sound:hover { border-color: var(--area); color: var(--area); }

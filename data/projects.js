@@ -63,13 +63,17 @@ window.PORTFOLIO = {
           team: "Futuregames (team)",
           role: "Programming lead",
           summary:
-            "A one-month production with designers, artists and producers. Judged by developers from studios including CD Projekt Red and 11 bit studios.",
+            "A fast, chaotic, skill-based action game in bright yellow. Made in one month by a team of designers, artists, programmers and producers, and judged by developers from studios including CD Projekt Red and 11 bit studios.",
           highlights: [
             "Led programming on the team",
             "Combat system programmer: designed and built the combat system and core mechanics"
           ],
           tech: ["Unity", "C#", "Combat systems"],
           metric: { value: "1st", label: "place of 8 games" },
+          youtube: "t95-fin-uik",
+          autoplay: true,
+          poster: "https://img.itch.zone/aW1nLzI1NzE5MDcwLnBuZw==/original/Gjlqhf.png",
+          imageAlt: "Nana: Into the Banana key art",
           links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/nanaintothebanana" }]
         },
         {
@@ -78,12 +82,16 @@ window.PORTFOLIO = {
           team: "Futuregames (team)",
           role: "AI programmer",
           summary:
-            "A one-month team production at Futuregames, judged by industry developers.",
+            "A short, fast top-down arcade shooter: a robotic snowman fights Heat Inc. to save the polar ice caps. One of two programmers on a one-month team production.",
           highlights: [
-            "Enemy AI built on Unity's behavior tree package, extended with custom nodes for complex agent logic"
+            "Enemy AI built on Unity's behavior tree package, extended for complex agent logic"
           ],
           tech: ["Unity", "C#", "Behavior trees", "Game AI"],
           metric: { value: "2nd", label: "place of 8 games" },
+          youtube: "GdHAlfl6nn0",
+          autoplay: true,
+          poster: "https://img.itch.zone/aW1nLzMwMDU5MzEyLnBuZw==/original/pfs49r.png",
+          imageAlt: "The Polar Protocol key art",
           links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/thepolarprotocol" }]
         },
         {
