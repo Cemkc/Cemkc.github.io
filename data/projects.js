@@ -208,6 +208,41 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           }
         },
         {
+          id: "overbrewed",
+          title: "Overbrewed",
+          year: "2026",
+          team: "Futuregames (team)",
+          role: "Network programmer",
+          summary:
+            "A two-player co-op potion shop with asymmetric roles: one player takes the orders, the other brews, and they have to talk to get them right. One of three programmers on a Futuregames team production.",
+          highlights: [
+            "The game's network structure for two-player LAN co-op (one player hosts, the other joins)",
+            "Interactable item mechanics"
+          ],
+          tech: ["Networking", "Co-op multiplayer"],
+          youtube: "4WlgjsTaRYg",
+          autoplay: true,
+          poster: "https://img.itch.zone/aW1nLzI4MDE4NDk3LnBuZw==/original/BfImCR.png",
+          imageAlt: "Overbrewed key art",
+          links: [{ label: "Play on itch.io", url: "https://futuregames.itch.io/overbrewed" }],
+          page: {
+            intro:
+              "Overbrewed was Game Project 3 at Futuregames, made in seven weeks by a cross-site student team. I was one of three programmers. I wrote the network structure that lets two players share the shop over LAN, and the mechanics for the items players pick up and interact with.",
+            facts: [
+              { label: "Role", value: "Network programmer" },
+              { label: "Duration", value: "7 weeks" },
+              { label: "Programmers", value: "3" },
+              { label: "Players", value: "2, co-op over LAN" }
+            ],
+            note: "We used Perforce, so there is no public commit history to link. Design, art, animation, audio and the rest of the code were the team's work.",
+            gallery: [
+              { src: "https://img.itch.zone/aW1hZ2UvNDY1OTUzMC8yODAxODU1NS5wbmc=/original/2U1kAT.png", alt: "Overbrewed screenshot" },
+              { src: "https://img.itch.zone/aW1hZ2UvNDY1OTUzMC8yODAxODU1NC5wbmc=/original/dIvNIZ.png", alt: "Overbrewed screenshot" },
+              { src: "https://img.itch.zone/aW1hZ2UvNDY1OTUzMC8yODAxODU1Ni5wbmc=/original/Jm%2B%2Fgz.png", alt: "Overbrewed screenshot" }
+            ]
+          }
+        },
+        {
           id: "polar-protocol",
           title: "Polar Protocol",
           year: "2025",
@@ -466,58 +501,6 @@ private float TurnSpeedCurve(float angle) {
               }
             ],
             note: "Enemies, waves and souls, most of the UI, the scenes and the art were made by teammates."
-          }
-        },
-        {
-          id: "iyi-uykular",
-          title: "İyi Uykular",
-          year: "2022",
-          team: "Mağara Jam #4 (team)",
-          role: "Gameplay programmer",
-          summary:
-            "A short 3D story game from Mağara Jam #4: a girl can't sleep after a nightmare, so her brother tells her a story, and you play through it.",
-          highlights: [
-            "Player controller with walk, run and dash states, aimed with the mouse",
-            "Teleport, stun and area attack skills with cooldowns, unlocked as the story goes on",
-            "A dragon boss with melee and fireball attacks on a NavMesh state machine"
-          ],
-          tech: ["Unity", "C#", "Input System", "NavMesh", "Game jam"],
-          image: "https://img.itch.zone/aW1nLzgyMTk5NjUucG5n/original/It9XRB.png",
-          imageAlt: "İyi Uykular cover art",
-          links: [
-            { label: "itch.io", url: "https://sphimex.itch.io/somnium" },
-            { label: "Source", url: "https://github.com/GoKo-Studios/MagaraJam4" }
-          ],
-          page: {
-            intro:
-              "İyi Uykular (\"Good night\") was our entry for Mağara Jam #4 in February 2022. A little girl wakes from a nightmare, and her older brother tells her a story to calm her down. You turn the pages of the book and play the story. I wrote the player and the dragon boss.",
-            facts: [
-              { label: "Role", value: "Gameplay programmer" },
-              { label: "Duration", value: "Jam weekend (Feb 2022)" },
-              { label: "My code", value: "Player, skills, dragon boss" }
-            ],
-            sections: [
-              {
-                title: "Player",
-                text:
-                  "The player has idle, walking, running, dashing and dying states. It moves relative to the orbit camera and turns to face the mouse cursor, found with a raycast into the scene. Input goes through Unity's Input System. The sword only deals damage between two animation events, so a hit counts only during the swing."
-              },
-              {
-                title: "Skills",
-                bullets: [
-                  "Teleport: raycasts forward for an enemy and puts the player just behind it.",
-                  "Stun: freezes the targeted enemy for a set time.",
-                  "Area attack: damages every enemy in range after a short wind-up.",
-                  "Each skill has its own cooldown and VFX, and the story unlocks them one by one."
-                ]
-              },
-              {
-                title: "Dragon boss",
-                text:
-                  "The dragon is a NavMesh agent with idle, chase, melee, ranged and return-to-origin states. Up close it attacks with a hitbox switched on by animation events. Further away it shoots fireballs at the player, and if the player runs far enough it walks back to where it started."
-              }
-            ],
-            note: "The regular enemies, the golem and their stun handling were written by a teammate. I added the TakeDamage method my skills call on them."
           }
         }
       ]
