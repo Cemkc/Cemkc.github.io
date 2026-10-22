@@ -9,6 +9,7 @@ Plain HTML, CSS and JavaScript. No build step: push to `main` and Pages serves i
 Everything shown on the site lives in [`data/projects.js`](data/projects.js).
 
 - **Add a project:** add an object to an area's `projects` list. The comment at the top of the file lists the fields.
+- **Project pages:** every project with an `id` gets its own page at `project.html?id=<id>`. Fill its `page` object (intro, facts, sections with text, bullets, code or images, gallery, lessons) to describe your contribution.
 - **Add an area:** add an object to `areas` with an `id`, `label`, `tone` (`amber`, `cyan` or `violet`) and `projects`. A new tab appears for it automatically, linkable as `https://cemkc.github.io/#<id>`.
 - **Email / CV:** set `profile.email` or `profile.cv` (e.g. `assets/Cem-Koc-CV.pdf`) and they show up in the header.
 - **Screenshots:** put images in `assets/img/` and reference them with `image: "assets/img/name.png"`. Projects with a `youtube` id use the video thumbnail instead.
