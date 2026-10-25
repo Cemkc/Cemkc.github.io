@@ -52,70 +52,6 @@ window.PORTFOLIO = {
       skills: ["Unity", "C#", "Hierarchical state machines", "Custom editor tools", "ScriptableObject workflows", "Behavior trees", "HLSL / Shader Graph", "Netcode", "Object pooling"],
       projects: [
         {
-          id: "gemmy-gems",
-          title: "Gemmy Gems",
-          year: "2025–now",
-          team: "Bosphorus Games",
-          role: "Lead Programmer",
-          featured: true,
-          summary:
-            "A commercial PC game about digging up stones, working them in a workshop and selling them to customers. I lead the programming team and set the code standards that let several programmers add features without stepping on each other.",
-          highlights: [
-            "State machine framework (hierarchical state machine and pushdown automaton) that runs the game flow and every workshop tool",
-            "Workshop tool system: cutting, molding, scale, scanner and UV tools, each with its own states",
-            "Procedural gem meshes from convex hulls, with mesh clipping for the cutting mechanic",
-            "Grid system, outline and gem shaders (HLSL / Shader Graph), save/load and tool upgrades"
-          ],
-          tech: ["Unity", "C#", "HSM", "HLSL", "Shader Graph", "Team lead"],
-          metric: { value: "130+", label: "commits of ~350" },
-          links: [{ label: "Bosphorus Games", url: "https://www.linkedin.com/company/bosphorus-games/" }],
-          page: {
-            intro:
-              "I have been Lead Programmer at Bosphorus Games since the project started in autumn 2025. Besides leading the programming team, I wrote the systems the rest of the game is built on: the state machine framework, the grid, the workshop tools and the procedural gem meshes. Other programmers built features such as gravel collection, land selection and the shop on top of them.",
-            facts: [
-              { label: "Role", value: "Lead Programmer" },
-              { label: "Started", value: "Autumn 2025" },
-              { label: "My commits", value: "130+ of ~350" },
-              { label: "Platform", value: "PC (Unity)" }
-            ],
-            sections: [
-              {
-                title: "State machine framework",
-                text:
-                  "Most of the game's logic is a question of which mode the player is in, so I wrote a hierarchical state machine with a builder to define state trees in code. It drives the top-level game flow (running, paused, appraisal, refining, using a tool) and runs inside each workshop tool. For flows that stack and unwind, such as nested screens, I added a pushdown automaton. New screens and tools plug in as states instead of adding more flags to existing scripts."
-              },
-              {
-                title: "Workshop tool system",
-                text:
-                  "The workshop is where players examine and work their gems. I built the tool layer that all workshop machines share.",
-                bullets: [
-                  "A tool manager and a shared tool driver. The cutting, molding, scale, scanner and UV tools each have their own root state and exit conditions.",
-                  "Tool upgrades and a save/load system, starting with the hand scoop.",
-                  "Camera manager and workshop navigation between machines."
-                ]
-              },
-              {
-                title: "Procedural gems",
-                text:
-                  "Every gem is generated, so no two look the same. I generate gem meshes from the convex hull of seeded random points on a sphere (with the MIConvexHull library), so the same seed always gives the same gem, and wrote a mesh clipper that slices them for the cutting mechanic. Meshes can be exported to FBX so artists can use them as a base."
-              },
-              {
-                title: "Grid and shaders",
-                bullets: [
-                  "Workbench grid with navigation, drag-and-drop placement, cell highlighting and lock switching.",
-                  "Outline shader in HLSL and an edge outline subgraph in Shader Graph, plus the gem shader and the color spectrum shader for the appraisal tool."
-                ]
-              },
-              {
-                title: "Leading the programmers",
-                text:
-                  "I set the code structure and standards, split the work, and run the branch and merge flow between the programmers' feature branches and the build branch."
-              }
-            ],
-            note: "Gemmy Gems is in development and closed source, so this page shows no code or footage yet."
-          }
-        },
-        {
           id: "nana",
           title: "Nana: Into the Banana",
           year: "2026",
@@ -503,6 +439,70 @@ private float TurnSpeedCurve(float angle) {
               }
             ],
             note: "Enemies, waves and souls, most of the UI, the scenes and the art were made by teammates."
+          }
+        },
+        {
+          id: "gemmy-gems",
+          title: "Gemmy Gems",
+          year: "2025–now",
+          team: "Bosphorus Games",
+          role: "Lead Programmer",
+          featured: true,
+          summary:
+            "A commercial PC game about digging up stones, working them in a workshop and selling them to customers. I lead the programming team and set the code standards that let several programmers add features without stepping on each other.",
+          highlights: [
+            "State machine framework (hierarchical state machine and pushdown automaton) that runs the game flow and every workshop tool",
+            "Workshop tool system: cutting, molding, scale, scanner and UV tools, each with its own states",
+            "Procedural gem meshes from convex hulls, with mesh clipping for the cutting mechanic",
+            "Grid system, outline and gem shaders (HLSL / Shader Graph), save/load and tool upgrades"
+          ],
+          tech: ["Unity", "C#", "HSM", "HLSL", "Shader Graph", "Team lead"],
+          metric: { value: "130+", label: "commits of ~350" },
+          links: [{ label: "Bosphorus Games", url: "https://www.linkedin.com/company/bosphorus-games/" }],
+          page: {
+            intro:
+              "I have been Lead Programmer at Bosphorus Games since the project started in autumn 2025. Besides leading the programming team, I wrote the systems the rest of the game is built on: the state machine framework, the grid, the workshop tools and the procedural gem meshes. Other programmers built features such as gravel collection, land selection and the shop on top of them.",
+            facts: [
+              { label: "Role", value: "Lead Programmer" },
+              { label: "Started", value: "Autumn 2025" },
+              { label: "My commits", value: "130+ of ~350" },
+              { label: "Platform", value: "PC (Unity)" }
+            ],
+            sections: [
+              {
+                title: "State machine framework",
+                text:
+                  "Most of the game's logic is a question of which mode the player is in, so I wrote a hierarchical state machine with a builder to define state trees in code. It drives the top-level game flow (running, paused, appraisal, refining, using a tool) and runs inside each workshop tool. For flows that stack and unwind, such as nested screens, I added a pushdown automaton. New screens and tools plug in as states instead of adding more flags to existing scripts."
+              },
+              {
+                title: "Workshop tool system",
+                text:
+                  "The workshop is where players examine and work their gems. I built the tool layer that all workshop machines share.",
+                bullets: [
+                  "A tool manager and a shared tool driver. The cutting, molding, scale, scanner and UV tools each have their own root state and exit conditions.",
+                  "Tool upgrades and a save/load system, starting with the hand scoop.",
+                  "Camera manager and workshop navigation between machines."
+                ]
+              },
+              {
+                title: "Procedural gems",
+                text:
+                  "Every gem is generated, so no two look the same. I generate gem meshes from the convex hull of seeded random points on a sphere (with the MIConvexHull library), so the same seed always gives the same gem, and wrote a mesh clipper that slices them for the cutting mechanic. Meshes can be exported to FBX so artists can use them as a base."
+              },
+              {
+                title: "Grid and shaders",
+                bullets: [
+                  "Workbench grid with navigation, drag-and-drop placement, cell highlighting and lock switching.",
+                  "Outline shader in HLSL and an edge outline subgraph in Shader Graph, plus the gem shader and the color spectrum shader for the appraisal tool."
+                ]
+              },
+              {
+                title: "Leading the programmers",
+                text:
+                  "I set the code structure and standards, split the work, and run the branch and merge flow between the programmers' feature branches and the build branch."
+              }
+            ],
+            note: "Gemmy Gems is in development and closed source, so this page shows no code or footage yet."
           }
         }
       ]
