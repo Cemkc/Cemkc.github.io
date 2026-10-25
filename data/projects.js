@@ -147,6 +147,7 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           id: "overbrewed",
           title: "Overbrewed",
           year: "2026",
+          featured: true,
           team: "Futuregames (team)",
           role: "Network programmer",
           summary:
@@ -182,6 +183,7 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           id: "polar-protocol",
           title: "Polar Protocol",
           year: "2025",
+          featured: true,
           team: "Futuregames (team)",
           role: "Enemy AI programmer",
           summary:
@@ -280,6 +282,7 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           id: "mavata",
           title: "Project Mavata",
           year: "2023–2024",
+          featured: true,
           team: "GoKo Studios",
           role: "Co-founder & programmer",
           summary:
@@ -367,6 +370,7 @@ private Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 target, Vec
           id: "cehennet",
           title: "Cehennet",
           year: "2022",
+          featured: true,
           team: "Mağara Jam #5 (7-person team)",
           role: "Player programmer",
           summary:
